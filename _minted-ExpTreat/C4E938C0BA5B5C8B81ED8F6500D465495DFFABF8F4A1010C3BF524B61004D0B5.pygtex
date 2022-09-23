@@ -1,3 +1,0 @@
-\begin{Verbatim}[commandchars=\\\{\}]
-gnuplot \PYGZhy{}persist \PYGZhy{}c GnuFit.gp \PYGZlt{}file\PYGZus{}with\PYGZus{}experimental\PYGZus{}data\PYGZgt{} \PYGZlt{}file\PYGZus{}with\PYGZus{}fit\PYGZus{}parameters\PYGZgt{}
-\end{Verbatim}
