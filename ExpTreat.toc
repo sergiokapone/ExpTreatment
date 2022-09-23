@@ -1,0 +1,39 @@
+\babel@toc {ukrainian}{}\relax 
+\contentsline {chapter}{\numberline {1}Що таке похибки і навіщо їх оцінювати?}{3}{chapter.2}%
+\contentsline {chapter}{\numberline {2}Систематичні та статистичні похибки}{5}{chapter.7}%
+\contentsline {chapter}{\numberline {3}Як оцінюються похибки?}{7}{chapter.9}%
+\contentsline {section}{\numberline {3.1}Оцінка систематичних похибок}{7}{section.10}%
+\contentsline {subsection}{\numberline {3.1.1}Визначення та врахування систематичних похибок. Клас точності приладів}{8}{subsection.11}%
+\contentsline {section}{\numberline {3.2}Оцінка статистичних похибок}{9}{section.12}%
+\contentsline {section}{\numberline {3.3}Оцінка похибок прямих вимірювань}{9}{section.14}%
+\contentsline {section}{\numberline {3.4}Статистичний розподіл випадкових величин}{11}{section.27}%
+\contentsline {section}{\numberline {3.5}Нормальний (Гаусовий) розподіл}{13}{section.32}%
+\contentsline {chapter}{\numberline {4}Як записується похибка?}{15}{chapter.39}%
+\contentsline {chapter}{\numberline {5}Як порівнювати похибки?}{18}{chapter.52}%
+\contentsline {chapter}{\numberline {6}Апроксимація результатів експерименту}{19}{chapter.53}%
+\contentsline {section}{\numberline {6.1}Метод найменших квадратів}{20}{section.60}%
+\contentsline {section}{\numberline {6.2}Метод найменших повних квадратів (врахування похибок в незалежних величинах).}{23}{section.72}%
+\contentsline {section}{\numberline {6.3}Практичні поради для проведення апроксимації}{25}{section.80}%
+\contentsline {chapter}{\relax \fontsize {14.4}{17}\selectfont \abovedisplayskip 14\p@ plus3\p@ minus7\p@ \abovedisplayshortskip \z@ plus4\p@ \belowdisplayshortskip 7\p@ plus4\p@ minus3\p@ \belowdisplayskip \abovedisplayskip \let \leftmargin \leftmargini \parsep 6\p@ plus2.5\p@ minus\p@ \topsep 12\p@ plus5\p@ minus7\p@ \itemsep 6\p@ plus2.5\p@ minus\p@ \leftmargin \leftmargini \parsep 6\p@ plus2.5\p@ minus\p@ \topsep 12\p@ plus5\p@ minus7\p@ \itemsep 6\p@ plus2.5\p@ minus\p@ \bfseries Додатки}{26}{chapter*.85}%
+\contentsline {section}{\numberline {А}Приклад обробки даних та перевірка лінійної моделі}{26}{section.86}%
+\contentsline {section}{\numberline {Б}Програмне забезпечення для апроксимації даних та побудови графіків. Приклади застосування}{30}{section.97}%
+\contentsline {subsection}{\numberline {Б.1}Обробка результатів в \texttt {Python}}{30}{subsection.98}%
+\contentsline {subsection}{\numberline {Б.2}Обробка результатів в \texttt {Gnuplot}}{33}{subsection.100}%
+\contentsline {subsection}{\numberline {Б.3}Побудова графіку за допомогою пакета \texttt {pgfplots/\LaTeX }}{34}{subsection.102}%
+\contentsline {subsection}{\numberline {Б.4}Апроксимація в \texttt {Google Colab}}{36}{subsection.104}%
+\contentsline {chapter}{Перелік використаних джерел}{37}{chapter*.105}%
+\babel@toc {english}{}\relax 
+\babel@toc {ukrainian}{}\relax 
+\babel@toc {russian}{}\relax 
+\babel@toc {ukrainian}{}\relax 
+\babel@toc {russian}{}\relax 
+\babel@toc {ukrainian}{}\relax 
+\babel@toc {russian}{}\relax 
+\babel@toc {ukrainian}{}\relax 
+\babel@toc {russian}{}\relax 
+\babel@toc {ukrainian}{}\relax 
+\babel@toc {russian}{}\relax 
+\babel@toc {ukrainian}{}\relax 
+\babel@toc {russian}{}\relax 
+\babel@toc {ukrainian}{}\relax 
+\contentsfinish 

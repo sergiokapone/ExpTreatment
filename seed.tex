@@ -1,0 +1,215 @@
+%%============================ Compiler Directives =======================%%
+%%                                                                        %%
+% !TeX program = lualatex
+% !TeX encoding = utf8
+% !TeX spellcheck = uk_UA
+%%                                                                        %%
+%%============================== Клас документа ==========================%%
+%%                                                                        %%
+\documentclass[]{article}
+\usepackage[fontsize = 12pt]{fontsize}
+\usepackage{ifluatex}
+%%                                                                        %%
+%%========================== Мови, шрифти та кодування ===================%%
+%%
+\ifluatex                                                                        %%
+	\usepackage{fontspec}
+	\setsansfont{CMU Sans Serif}%{Arial}
+	\setmainfont{CMU Serif}%{Times New Roman}
+	\setmonofont{CMU Typewriter Text}%{Consolas}
+	\defaultfontfeatures{Ligatures={TeX}}
+	\usepackage[math-style=TeX]{unicode-math}
+\else
+	\usepackage[utf8]{inputenc}
+	\usepackage[T2A,T1]{fontenc}
+	\usepackage{amsmath}
+	%\usepackage{pscyr}
+	\usepackage{cmap}
+\fi
+\usepackage[english, russian, ukrainian]{babel}
+%%                                                                        %%
+%%============================= Геометрія сторінки =======================%%
+%%                                                                        %%
+\usepackage[%
+	a4paper,%
+	footskip=1cm,%
+	headsep=0.3cm,%
+	top=2cm, %поле сверху
+	bottom=2cm, %поле снизу
+	left=2cm, %поле ліворуч
+	right=2cm, %поле праворуч
+    ]{geometry}
+%%                                                                        %%
+%%============================== Інтерліньяж  ============================%%
+%%                                                                        %%
+\renewcommand{\baselinestretch}{1}
+%-------------------------  Подавление висячих строк  --------------------%%
+\clubpenalty =10000
+\widowpenalty=10000
+%---------------------------------Інтервали-------------------------------%%
+\setlength{\parskip}{0.5ex}%
+\setlength{\parindent}{2.5em}%
+%%                                                                        %%
+%%=========================== Математичні пакети і графіка ===============%%
+%%                                                                        %%
+\usepackage{tikz, pgfplots}
+\usepackage{subcaption, xcolor}
+%%                                                                        %%
+%%========================== Гіперпосилення (href) =======================%%
+%%                                                                        %%
+\usepackage[%colorlinks=true,
+	%urlcolor = blue, %Colour for external hyperlinks
+	%linkcolor  = malina, %Colour of internal links
+	%citecolor  = green, %Colour of citations
+	bookmarks = true,
+	bookmarksnumbered=true,
+	unicode,
+	linktoc = all,
+	hypertexnames=false,
+	pdftoolbar=false,
+	pdfpagelayout=TwoPageRight,
+	pdfauthor={Ponomarenko S.M. aka sergiokapone},
+	pdfdisplaydoctitle=true,
+	pdfencoding=auto
+	]%
+	{hyperref}
+		\makeatletter
+	\AtBeginDocument{
+	\hypersetup{
+		pdfinfo={
+		Title={\@title},
+		}
+	}
+	}
+	\makeatother
+%%                                                                        %%
+%%============================ Заголовок та автори =======================%%
+%%                                                                        %%
+\title{}
+\author{}
+%%                                                                        %%
+%%========================================================================%%
+
+\pgfset{
+    declare function = {
+        gauss(\m,\s,\x) = 1/(sqrt(2*pi)*\s)*exp(-0.5*(\x-\m)^2/\s^2);
+        %                    valuegauss(\x,\m,\s) = 1/(sqrt(2*pi)*\s)*exp(-0.5*(\x-\m)^2/\s^2);
+    },
+}
+
+\pgfplotsset{%
+    InfoPlotGrid/.style={%
+        axis lines = left,
+        extra tick style={% changes for all extra ticks
+            %						tick align=outside,
+            major grid style={dashed,draw=red}
+        },
+        extra x tick style={
+            major tick style={
+                gray,
+            },
+            tick label style={
+                /pgf/number format/.cd, fixed, fixed zerofill,
+                precision=2,
+            }
+        },
+        extra y tick style={% changes for extra y ticks
+            major tick style={
+                gray,
+            },
+        },
+        xtick = \empty,
+        xmajorgrids=true,
+        ymajorgrids=true,
+        every axis x label/.style={at={(current axis.right of origin)},anchor=north},
+    },
+}
+
+\AtBeginDocument{%
+    \let\phi\varphi
+    \let\epsilon\varepsilon
+    \DeclareMathOperator{\const}{const}
+    \newcommand{\sn}{\sum\limits_{i = 1}^n}
+    \newcommand{\average}[1]{\left\langle #1 \right\rangle}
+}
+
+\begin{document}
+% 7 21 30
+\foreach \i in {2300} {
+
+\pgfmathsetseed{\i}%2300
+
+\begin{center}
+    \i
+\end{center}
+
+        \begin{tikzpicture}[scale=0.3]
+            \pgfplotsset{compat=1.8}
+            \begin{axis}[InfoPlotGrid, every node/.style={transform shape}
+                axis y discontinuity=none,
+                width=\linewidth,
+                ytick distance = 0.1,
+                xtick distance = 1,
+                xlabel = {$x$},
+                ylabel = {Частка та $w(x)$},
+                ymax=0.6,
+                extra x ticks={12.8},
+                extra x tick labels={$\average{x}$},
+                ]
+                \addplot [ultra thick, ybar interval, bar width=0.2, domain=8:17, samples=15,]
+                (x, {1.5*rnd*gauss(12.5, 1,x)});
+                \addplot [domain=8:17, samples=200, smooth, cyan!80!blue, thick]
+                (x, {gauss(12.5, 1,x)});
+
+            \end{axis}
+        \end{tikzpicture}
+        %
+        \begin{tikzpicture}[scale=0.3]
+            \pgfplotsset{compat=1.8}
+            \begin{axis}[InfoPlotGrid,  every node/.style={transform shape}
+                axis y discontinuity=none,
+                width=\linewidth,
+                ytick distance = 0.1,
+                xtick distance = 1,
+                xlabel = {$x$},
+                ylabel = {Частка та $w(x)$},
+                ymax=0.6,
+                extra x ticks={12.5},
+                extra x tick labels={$\average{x}$},
+                ]
+                \addplot [domain=8:17, samples=100, ybar interval]
+                (x, {1.5*rnd*gauss(12.5, 1,x)});
+
+                \addplot [domain=8:17, samples=200, smooth, cyan!80!blue, thick]
+                (x, {gauss(12.5, 1,x)});
+            \end{axis}
+        \end{tikzpicture}
+}
+
+\clearpage
+
+\pgfmathsetseed{2300}%2300
+\begin{tikzpicture}
+    \pgfplotsset{compat=1.8}
+    \begin{axis}[InfoPlotGrid,  every node/.style={transform shape}
+        axis y discontinuity=none,
+        width=\linewidth,
+        ytick distance = 0.1,
+        xtick distance = 1,
+        xlabel = {$x$},
+        ylabel = {},
+        ymax=6,
+        extra x ticks={12.5},
+        extra x tick labels={$\average{x}$},
+        ]
+        \addplot [domain=8:17, samples=20, ybar interval]
+        (x, {10*gauss(12.5, 1,x)});
+
+    \end{axis}
+\end{tikzpicture}
+
+
+
+\end{document}
+
+

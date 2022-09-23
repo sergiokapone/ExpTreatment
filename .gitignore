@@ -1,0 +1,12 @@
+*.aux
+*.log
+*.out
+*.bbl
+*.bcf
+*.blg
+*.thm
+*.synctex.gz
+*.7z
+*.fdb_latexmk
+*.fls
+desktop.ini

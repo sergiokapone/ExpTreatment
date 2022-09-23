@@ -1,0 +1,134 @@
+% !TeX program = lualatex
+% !TeX encoding = utf8
+% !TeX spellcheck = uk_UA
+
+
+\documentclass[tikz, border = 0.5cm]{standalone}
+% =============== Шрифти ==========================
+\usepackage{fontspec}
+\setsansfont{CMU Sans Serif}%{Arial}
+\setmainfont{CMU Serif}%{Times New Roman}
+\setmonofont{CMU Typewriter Text}%{Consolas}
+\defaultfontfeatures{Ligatures={TeX}}
+\usepackage[math-style=TeX]{unicode-math}
+% ================ Мова ==========================
+\usepackage[english, russian, ukrainian]{babel}
+
+% ================ Пакети =========================
+\usepackage{pgfplots} % Пакет для побудови графіків
+\usepackage{pgfplotstable} % Пакет для роботи з таблицями
+
+% ======= Файли з даними ========
+\edef\infile{ExpData.dat} % Файл з даними експерименту
+\edef\outfile{FitParam.dat} % Файл з параметрами підгонки
+
+% Виклик скрипта PYTHON для апроксимації даних
+%\input{|python PyFit.py \infile\space \outfile}
+
+%або
+
+% Виклик скрипта GNUPLOT для апроксимації даних
+\input{|gnuplot -persist -c GnuFit.gp \infile\space\outfile}
+
+% ======= Команда \getelement ========
+% Забирає данні з файлу параметрів
+% і вміщуе в змінні LaTeX
+\pgfplotstableread[]{\infile}\datatable
+\newcommand{\getelement}[4]{
+	\pgfplotstablegetelem{#2}{#3}\of#1
+	\pgfmathsetmacro{#4}{\pgfplotsretval}
+}
+
+% ======= Завантаження данних для побудови ========
+\pgfkeys{/pgf/fpu}
+\pgfplotstableread[col sep = colon, header=false]{\outfile}\plotfitdata
+\getelement{\plotfitdata}{0}{1}{\C} % Параметр моделі C
+\getelement{\plotfitdata}{1}{1}{\dC} % Стандартна похибка параметру
+\getelement{\plotfitdata}{2}{1}{\b} % Параметр моделі C
+\getelement{\plotfitdata}{3}{1}{\db} % Стандартна похибка параметру
+\getelement{\plotfitdata}{4}{1}{\chisqr} % Приведений хі-квадрат
+\getelement{\plotfitdata}{5}{1}{\rsq} % Коефіцієнт детермінації R^2
+\pgfmathsetmacro{\Cprint}{\C*1e4}
+\pgfmathsetmacro{\dCprint}{\dC*1e4}
+\pgfmathsetmacro{\bprint}{\b*1e4}
+\pgfmathsetmacro{\dbprint}{\db*1e4}
+\pgfkeys{/pgf/fpu=false}
+%===============================================================================
+
+\begin{document}
+\begin{tikzpicture}[]
+	\begin{axis}[
+			% ===== Легенда ==============
+			legend style={font=\small,
+					fill opacity=0.5,
+					text opacity=1,
+					draw=none,
+					cells={
+							align = left,
+							anchor=west},
+					legend pos=north west,
+				},
+			% ======= Координатна сітка ==========
+			grid = both,
+			grid style={line width=.1pt, draw=brown!10},
+			major grid style={line width=.2pt,draw=brown!50},
+			minor x tick num = 9,
+			minor y tick num = 4,
+			minor grid style = {line width=.1pt,draw=brown!10},
+			% ====== Штрихи координатних осей =======
+			tick label style = {font=\sffamily},
+			tick align=inside,
+			legend style = {font=\sffamily},
+			enlargelimits=false,
+			width=\linewidth,
+			height=\linewidth,
+			every axis label = {font=\sffamily},
+			xlabel={$I$ / А},
+			ylabel={$B$ / Тл},
+			scaled x ticks=base 10:0,
+			scaled y ticks=base 10:4,
+			xtick distance=0.2,
+			title = {\sffamily Калібрувальна крива котушок Гельмгольца},
+		]
+		% ================== Plot 1 =====================
+		\addplot [only marks,
+			mark options = {color = red},
+			mark size = 2,
+			error bars/.cd,
+                y dir=both,
+    			x dir=both,
+    			y explicit,
+    			x explicit,
+            pgfplots/.cd,           
+		] table[
+				x = x,
+				y = y,
+				x error = xdelta,
+				y error = ydelta] \datatable;
+		\addlegendentry{Експериментальні дані}
+
+		\addplot [no markers, blue, domain=0.8:2.5]  {
+			\C * x 
+		};
+		\addlegendentry{Лінійна апроксимація за моделлю $B = C \cdot I$}
+
+		% Додавання результатів на графік
+		\node[anchor=south east,
+		draw=none,
+		fill=white,
+		align=left,
+		font=\sffamily,
+		fill opacity=0.5,
+		text opacity=1,
+		] at ([shift ={(-0.25cm,0.25cm)}]current axis.south east) {
+		$C = (\pgfmathprintnumber[precision=2, fixed, fixed zerofill]{\Cprint}
+			\pm
+			\pgfmathprintnumber[precision=2, fixed, fixed zerofill]{\dCprint})
+			\cdot 10^{-4}$~Тл/А \\
+		${\chi^2}/{\overline{\chi^2}} = 
+               \pgfmathprintnumber[precision=2,fixed]{\chisqr}$,
+		$R^2 = \pgfmathprintnumber[precision=2,fixed]{\rsq}$ };
+	\end{axis}
+\end{tikzpicture}
+
+\end{document}

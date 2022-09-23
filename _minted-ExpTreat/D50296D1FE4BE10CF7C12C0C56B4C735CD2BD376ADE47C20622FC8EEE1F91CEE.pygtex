@@ -1,0 +1,25 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYGZsh{}\PYG{+w}{ }\PYG{o}{\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}}\PYG{+w}{ }Підгонка\PYG{+w}{ }\PYG{o}{\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}}
+\PYG{n+nb}{set}\PYG{+w}{ }\PYG{n}{fit}\PYG{+w}{ }\PYG{n}{quiet}
+\PYG{n}{a}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mf}{6e\PYGZhy{}4}\PYG{p}{;}
+\PYG{n}{f}\PYG{p}{(}\PYG{n}{x}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{a}\PYG{o}{*}\PYG{n}{x}\PYG{+w}{ }\PYG{o}{+}\PYG{+w}{ }\PYG{n}{b}\PYG{p}{;}\PYG{+w}{ }
+\PYG{n}{set}\PYG{+w}{ }\PYG{l+s}{fit}\PYG{+w}{ }\PYG{l+s}{errorvariables}\PYG{p}{;}
+\PYG{n}{fit}\PYG{+w}{ }\PYG{l+s}{f(x)}\PYG{+w}{ }\PYG{l+s}{ARG1}\PYG{+w}{ }\PYG{l+s}{u}\PYG{+w}{ }\PYG{l+s}{1:2:3:4}\PYG{+w}{  }\PYG{l+s}{xyerrors}\PYG{+w}{ }\PYG{l+s}{via}\PYG{+w}{ }\PYG{l+s}{a,b}\PYG{p}{;}\PYG{+w}{ }
+
+\PYGZsh{}\PYG{+w}{ }\PYG{o}{\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}}\PYG{+w}{ }Обчислення\PYG{+w}{ }\PYG{n}{of}\PYG{+w}{ }\PYG{n}{R}\PYGZca{}\PYG{l+m+mi}{2}\PYG{+w}{ }\PYG{o}{\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}}
+
+\PYG{n}{stats}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}\PYGZdq{}}\PYG{+w}{ }\PYG{l+s}{u}\PYG{+w}{ }\PYG{l+s}{2:(\PYGZdl{}2}\PYG{+w}{ }\PYG{o}{\PYGZhy{}}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{a}\PYG{o}{*}\PYGZdl{}\PYG{l+m+mi}{1}\PYG{+w}{ }\PYG{o}{+}\PYG{+w}{ }\PYG{n}{b}\PYG{p}{))}\PYG{+w}{ }\PYG{n}{nooutput}
+\PYG{n}{SST}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{STATS\PYGZus{}stddev\PYGZus{}x}\PYG{o}{**}\PYG{l+m+mi}{2}\PYG{o}{*}\PYG{n}{STATS\PYGZus{}records}
+\PYG{n}{SSE}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{STATS\PYGZus{}sumsq\PYGZus{}y}
+\PYG{n}{R2}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{+w}{ }\PYG{o}{\PYGZhy{}}\PYG{+w}{ }\PYG{n}{SSE}\PYG{o}{/}\PYG{n}{SST}
+\PYG{+w}{ }
+\PYGZsh{}\PYG{+w}{ }\PYG{o}{\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}}\PYG{+w}{ }Запис\PYG{+w}{ }результатів\PYG{+w}{ }\PYG{o}{\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}}
+
+\PYG{n+nb}{set}\PYG{+w}{ }\PYG{n+nb}{print}\PYG{+w}{ }\PYG{n}{ARG2}
+\PYG{n+nb}{print}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}Parameter a: \PYGZdq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{a}
+\PYG{n+nb}{print}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}Standart Deviation of a: \PYGZdq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{a\PYGZus{}err}
+\PYG{n+nb}{print}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}Parameter b: \PYGZdq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{b}
+\PYG{n+nb}{print}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}Standart Deviation of b: \PYGZdq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{b\PYGZus{}err}
+\PYG{n+nb}{print}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}chi square: \PYGZdq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{FIT\PYGZus{}STDFIT}\PYG{p}{)}\PYG{o}{**}\PYG{l+m+mi}{2}
+\PYG{n+nb}{print}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}R square:\PYGZdq{}}\PYG{+w}{ }\PYG{p}{,}\PYG{+w}{ }\PYG{n}{R2}
+\end{Verbatim}
